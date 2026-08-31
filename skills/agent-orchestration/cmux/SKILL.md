@@ -175,7 +175,7 @@ Before editing `cmux.json`, copy it to a timestamped `.bak` next to it so the us
 
 ```bash
 brew tap manaflow-ai/cmux && brew install --cask cmux
-sudo ln -sf /Applications/cmux.app/Contents/Resources/bin/cmux /usr/local/bin/cmux
+sudo ln -sf "<cmux-install-root>/Contents/Resources/bin/cmux" /usr/local/bin/cmux
 cmux hooks setup                                             # all detected agents
 cmux hooks setup codex|grok|antigravity|opencode             # specific agent
 npx skills add manaflow-ai/cmux -g -y                        # install cmux skills for agents

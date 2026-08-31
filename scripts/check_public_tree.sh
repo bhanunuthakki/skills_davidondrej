@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if git grep -I -l -E '(/Users/|/home/|[A-Za-z]:\\Users\\)' -- ':!scripts/check_public_tree.sh'; then
+  echo "Personal absolute path found in tracked content" >&2
+  exit 1
+fi
+if git ls-files | grep -E '(^|/)(credentials\.json|token\.json|.*secret.*|.*\.db|.*\.sqlite|.*\.pem|.*\.key)$'; then
+  echo "Credential or local-data artifact is tracked" >&2
+  exit 1
+fi
+if git ls-files | grep -E '(^|/)(data|outputs|tmp)/|\.(pdf|xlsx)$'; then
+  echo "Private source or generated artifact is tracked" >&2
+  exit 1
+fi
